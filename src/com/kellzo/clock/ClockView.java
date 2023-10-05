@@ -1,12 +1,9 @@
 package com.kellzo.clock;
 
 import com.kellzo.enums.State;
-import com.kellzo.utils.ScannerHelper;
 
 
 public class ClockView extends Clock {
-    private final ScannerHelper scannerHelper = new ScannerHelper();
-
     private String in = "";
 
     public void clockView() {
@@ -18,7 +15,7 @@ public class ClockView extends Clock {
     private void displayMenu() {
         System.out.println("-----------------------------");
         setState(State.TIME);
-        System.out.println("Status: " + getState());
+        System.out.println("State: " + getState());
         set();
         System.out.println("1. Change Time \n" +
                 "2. View Date \n" +
@@ -45,7 +42,7 @@ public class ClockView extends Clock {
     private void handleTime() {
         if (getState() == State.TIME) {
             setState(State.CHANGE_TIME);
-            System.out.println("Status: " + getState());
+            System.out.println("State: " + getState());
             readyToSet();
             System.out.println("1. Go to Display Time \n" +
                     "q. Quit");
@@ -65,7 +62,7 @@ public class ClockView extends Clock {
         setState(State.DATE);
         while (!in.equals("q")) {
             System.out.println("-----------------------------");
-            System.out.println("Status: " + getState());
+            System.out.println("State: " + getState());
             set();
             System.out.println("1. Change Date \n" +
                     "2. View Time \n" +
@@ -75,7 +72,7 @@ public class ClockView extends Clock {
 
             if (in.equals("1")) {
                 setState(State.CHANGE_DATE);
-                System.out.println("Status: " + getState());
+                System.out.println("State: " + getState());
                 readyToSet();
                 System.out.println("1. Go to Display Date \n" +
                         "q. Quit");

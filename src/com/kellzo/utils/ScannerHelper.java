@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class ScannerHelper {
     private final Scanner scanner;
-
     public ScannerHelper() {
         this.scanner = new Scanner(System.in);
     }

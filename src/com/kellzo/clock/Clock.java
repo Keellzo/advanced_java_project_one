@@ -12,7 +12,7 @@ public class Clock implements Actions {
     private LocalDate date;
     private LocalTime time;
     protected State state;
-    private final ScannerHelper scannerHelper = new ScannerHelper();
+    protected ScannerHelper scannerHelper = new ScannerHelper();
 
 
     public Clock() {
