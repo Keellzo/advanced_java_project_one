@@ -2,15 +2,18 @@ package com.kellzo.clock;
 
 import com.kellzo.enums.STATE;
 import com.kellzo.interfaces.Actions;
+import com.kellzo.utils.ScannerHelper;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class Clock implements Actions {
     private LocalDate date;
     private LocalTime time;
     protected STATE state;
+    private final ScannerHelper scannerHelper = new ScannerHelper();
+
 
     public Clock() {
         this.date = LocalDate.now();
@@ -33,7 +36,6 @@ public class Clock implements Actions {
         this.time = time;
     }
 
-
     public STATE getState() {
         return state;
     }
@@ -42,33 +44,35 @@ public class Clock implements Actions {
         this.state = state;
     }
 
-    @Override
-    public void changeMode() {
-
-    }
 
     @Override
     public void set() {
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         if (state == STATE.Time) {
-            System.out.println("The clock is: " + getTime().getHour() + ":" + String.format("%02d", getTime().getMinute()));
+            System.out.println("The clock is: " + getTime().format(timeFormatter));
         } else if (state == STATE.Date) {
-            System.out.println("The date is: " + getDate().getDayOfMonth() + "th " + getDate().getMonth() + " - " + getDate().getDayOfWeek());
+            System.out.println("The date is: " + getDate().format(dateFormatter));
         }
     }
 
+
     @Override
     public void readyToSet() {
-        Scanner scanner = new Scanner(System.in);
         if (state == STATE.ChangeTime) {
-            System.out.println("Enter the new time in HH:MM format:");
-            String newTime = scanner.nextLine();
-            // Parse and set the new time (you'll need to implement the parsing)
-            setTime(LocalTime.parse(newTime));
+            System.out.println("Enter the new time in HH:MM:SS format:");
+            LocalTime newTime = scannerHelper.readTime();
+            if (newTime != null) {
+                setTime(newTime);
+            }
         } else if (state == STATE.ChangeDate) {
             System.out.println("Enter the new date in YYYY-MM-DD format:");
-            String newDate = scanner.nextLine();
-            // Parse and set the new date (you'll need to implement the parsing)
-            setDate(LocalDate.parse(newDate));
+            LocalDate newDate = scannerHelper.readDate();
+            if (newDate != null) {
+                setDate(newDate);
+            }
         }
     }
+
 }
