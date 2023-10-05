@@ -1,6 +1,6 @@
 package com.kellzo.clock;
 
-import com.kellzo.enums.STATE;
+import com.kellzo.enums.State;
 import com.kellzo.interfaces.Actions;
 import com.kellzo.utils.ScannerHelper;
 
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Clock implements Actions {
     private LocalDate date;
     private LocalTime time;
-    protected STATE state;
+    protected State state;
     private final ScannerHelper scannerHelper = new ScannerHelper();
 
 
@@ -36,11 +36,11 @@ public class Clock implements Actions {
         this.time = time;
     }
 
-    public STATE getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(STATE state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -50,9 +50,9 @@ public class Clock implements Actions {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        if (state == STATE.Time) {
+        if (state == State.TIME) {
             System.out.println("The clock is: " + getTime().format(timeFormatter));
-        } else if (state == STATE.Date) {
+        } else if (state == State.DATE) {
             System.out.println("The date is: " + getDate().format(dateFormatter));
         }
     }
@@ -60,13 +60,13 @@ public class Clock implements Actions {
 
     @Override
     public void readyToSet() {
-        if (state == STATE.ChangeTime) {
+        if (state == State.CHANGE_TIME) {
             System.out.println("Enter the new time in HH:MM:SS format:");
             LocalTime newTime = scannerHelper.readTime();
             if (newTime != null) {
                 setTime(newTime);
             }
-        } else if (state == STATE.ChangeDate) {
+        } else if (state == State.CHANGE_DATE) {
             System.out.println("Enter the new date in YYYY-MM-DD format:");
             LocalDate newDate = scannerHelper.readDate();
             if (newDate != null) {

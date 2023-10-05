@@ -1,6 +1,6 @@
 package com.kellzo.clock;
 
-import com.kellzo.enums.STATE;
+import com.kellzo.enums.State;
 import com.kellzo.utils.ScannerHelper;
 
 
@@ -17,7 +17,7 @@ public class ClockView extends Clock {
 
     private void displayMenu() {
         System.out.println("-----------------------------");
-        setState(STATE.Time);
+        setState(State.TIME);
         System.out.println("Status: " + getState());
         set();
         System.out.println("1. Change Time \n" +
@@ -43,15 +43,15 @@ public class ClockView extends Clock {
     }
 
     private void handleTime() {
-        if (getState() == STATE.Time) {
-            setState(STATE.ChangeTime);
+        if (getState() == State.TIME) {
+            setState(State.CHANGE_TIME);
             System.out.println("Status: " + getState());
             readyToSet();
             System.out.println("1. Go to Display Time \n" +
                     "q. Quit");
             in = scannerHelper.readString();
             if (in.equals("1")) {
-                setState(STATE.Time);
+                setState(State.TIME);
             } else if (in.equals("q")) {
                 System.out.println("Goodbye!");
             }
@@ -62,7 +62,7 @@ public class ClockView extends Clock {
 
 
     private void handleDate() {
-        setState(STATE.Date);
+        setState(State.DATE);
         while (!in.equals("q")) {
             System.out.println("-----------------------------");
             System.out.println("Status: " + getState());
@@ -74,17 +74,17 @@ public class ClockView extends Clock {
             in = scannerHelper.readString();
 
             if (in.equals("1")) {
-                setState(STATE.ChangeDate);
+                setState(State.CHANGE_DATE);
                 System.out.println("Status: " + getState());
                 readyToSet();
                 System.out.println("1. Go to Display Date \n" +
                         "q. Quit");
                 in = scannerHelper.readString();
                 if (in.equals("1")) {
-                    setState(STATE.Date);
+                    setState(State.DATE);
                 }
             } else if (in.equals("2")) {
-                setState(STATE.Time);
+                setState(State.TIME);
                 break;
             } else if (in.equals("q")) {
                 System.out.println("Goodbye!");
