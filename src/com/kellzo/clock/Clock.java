@@ -11,10 +11,11 @@ import java.time.format.DateTimeFormatter;
 public class Clock implements Actions {
     private LocalDate date;
     private LocalTime time;
-    protected State state;
+    private State state;
     protected ScannerHelper scannerHelper = new ScannerHelper();
 
 
+    // No args constructor initializes date and time fields with values
     public Clock() {
         this.date = LocalDate.now();
         this.time = LocalTime.now();
@@ -44,7 +45,12 @@ public class Clock implements Actions {
         this.state = state;
     }
 
+    /*
+     ** Implemented methods from Interface below
+    */
 
+
+    // Method for displaying time or date depending on state condition
     @Override
     public void set() {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -58,6 +64,7 @@ public class Clock implements Actions {
     }
 
 
+    // Method for changing time or date depending on state condition
     @Override
     public void readyToSet() {
         if (state == State.CHANGE_TIME) {
@@ -74,4 +81,6 @@ public class Clock implements Actions {
             }
         }
     }
+
+
 }

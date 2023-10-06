@@ -6,12 +6,15 @@ import com.kellzo.enums.State;
 public class ClockView extends Clock {
     private String in = "";
 
+    // Initialize clockView for main method
     public void clockView() {
         while (!in.equals("q")) {
             displayMenu();
         }
     }
 
+    // First menu that sets and print TIME state and the time right now with set method
+    // and giving options to change time, print date right now or quit
     private void displayMenu() {
         System.out.println("-----------------------------");
         setState(State.TIME);
@@ -39,6 +42,8 @@ public class ClockView extends Clock {
         }
     }
 
+    // Method for changing time,setting CHANGE_TIME state and then using readyToSet method for changing time.
+    // Then giving two options to either display the time or quit the program
     private void handleTime() {
         if (getState() == State.TIME) {
             setState(State.CHANGE_TIME);
@@ -58,6 +63,9 @@ public class ClockView extends Clock {
     }
 
 
+    // Method for handling date, setting DATE state, prints the state, prints the date and then gives option
+    // Change the date or view time
+    // When changing date you have two options, either view date or end the program
     private void handleDate() {
         setState(State.DATE);
         while (!in.equals("q")) {

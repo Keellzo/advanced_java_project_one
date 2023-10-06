@@ -12,10 +12,13 @@ public class ScannerHelper {
         this.scanner = new Scanner(System.in);
     }
 
+
+    // Method for reading Strings, mostly for the switch cases in this case
     public String readString() {
         return scanner.next();
     }
 
+    // Method for reading the time, parsing the input with a try/catch
     public LocalTime readTime() {
         String input = scanner.next();
         try {
@@ -26,6 +29,7 @@ public class ScannerHelper {
         }
     }
 
+    // Method for reading the time, parsing the input with a try/catch
     public LocalDate readDate() {
         String input = scanner.next();
         try {
