@@ -47,7 +47,7 @@ public class Clock implements Actions {
 
     /*
      ** Implemented methods from Interface below
-    */
+     */
 
 
     // Method for displaying time or date depending on state condition
