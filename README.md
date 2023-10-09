@@ -1,4 +1,4 @@
-## Projektbeskrivning: Klockapplikation
+## Projekt: Klockapplikation
 
 ### Beskrivning
 
