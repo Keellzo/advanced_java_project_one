@@ -1,6 +1,6 @@
 ## Projektbeskrivning: Klockapplikation
 
-### Problemställning och Ansats
+### Beskrivning
 
 Detta projekt är en enkel klockapplikation som visar aktuell tid och datum. En nyckelfunktion är möjligheten att ändra tid och datum, beroende på vilket "tillstånd" man är i. Med andra ord, man kan endast ändra datumet när man är i ett "datum"-tillstånd, och likaså för tiden.
 
