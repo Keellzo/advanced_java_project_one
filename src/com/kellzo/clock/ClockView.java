@@ -13,15 +13,16 @@ public class ClockView extends Clock {
         }
     }
 
-    // First menu that sets and print TIME state and the time right now with set method
-    // and giving options to change time, print date right now or quit
+    // First menu that sets VIEW_TIME state and print the correct state and current time
+    // and giving options to change time, print date, change date or quit
     private void displayMenu() {
         System.out.println("-----------------------------");
-        setState(State.TIME);
+        setState(State.VIEW_TIME);
         System.out.println("State: " + getState());
         set();
         System.out.println("1. Change Time \n" +
                 "2. View Date \n" +
+                "3. Change date \n" +
                 "q. Quit");
         System.out.println("-----------------------------");
 
@@ -34,46 +35,42 @@ public class ClockView extends Clock {
             case "2":
                 handleDate();
                 break;
+            case "3":
+                System.out.println("Wrong state, you need to go view date state");
+                break;
             case "q":
                 System.out.println("Goodbye!");
                 break;
             default:
-                System.out.println("Invalid option. Try again.");
+                System.out.println("Invalid state. Try again");
         }
     }
 
-    // Method for changing time,setting CHANGE_TIME state and then using readyToSet method for changing time.
-    // Then giving two options to either display the time or quit the program
+    // Method for setting CHANGE_TIME state and then using readyToSet method for changing time.
+    // Then going back to VIEW_TIME state
     private void handleTime() {
-        if (getState() == State.TIME) {
+        if (getState() == State.VIEW_TIME) {
             setState(State.CHANGE_TIME);
             System.out.println("State: " + getState());
             readyToSet();
-            System.out.println("1. Go to Display Time \n" +
-                    "q. Quit");
-            in = scannerHelper.readString();
-            if (in.equals("1")) {
-                setState(State.TIME);
-            } else if (in.equals("q")) {
-                System.out.println("Goodbye!");
-            }
+            setState(State.VIEW_TIME);
         } else {
-            System.out.println("Please view the time first.");
+            System.out.println("Invalid.");
         }
     }
 
-
-    // Method for handling date, setting DATE state, prints the state, prints the date and then gives option
-    // Change the date or view time
-    // When changing date you have two options, either view date or end the program
+    // Method for printing date, first setting state VIEW_DATE and then gives option
+    // Change the date, change the time or view time
+    // When changing date you go back to VIEW_DATE state
     private void handleDate() {
-        setState(State.DATE);
+        setState(State.VIEW_DATE);
         while (!in.equals("q")) {
             System.out.println("-----------------------------");
             System.out.println("State: " + getState());
             set();
             System.out.println("1. Change Date \n" +
                     "2. View Time \n" +
+                    "3. Change Time \n" +
                     "q. Quit");
             System.out.println("-----------------------------");
             in = scannerHelper.readString();
@@ -82,15 +79,12 @@ public class ClockView extends Clock {
                 setState(State.CHANGE_DATE);
                 System.out.println("State: " + getState());
                 readyToSet();
-                System.out.println("1. Go to Display Date \n" +
-                        "q. Quit");
-                in = scannerHelper.readString();
-                if (in.equals("1")) {
-                    setState(State.DATE);
-                }
+                setState(State.VIEW_DATE);
             } else if (in.equals("2")) {
-                setState(State.TIME);
+                setState(State.VIEW_TIME);
                 break;
+            } else if (in.equals("3")) {
+                System.out.println("Wrong state, you need to go view time state");
             } else if (in.equals("q")) {
                 System.out.println("Goodbye!");
                 break;

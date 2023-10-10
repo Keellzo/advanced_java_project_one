@@ -56,9 +56,9 @@ public class Clock implements Actions {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        if (state == State.TIME) {
+        if (state == State.VIEW_TIME) {
             System.out.println("The clock is: " + getTime().format(timeFormatter));
-        } else if (state == State.DATE) {
+        } else if (state == State.VIEW_DATE) {
             System.out.println("The date is: " + getDate().format(dateFormatter));
         }
     }
